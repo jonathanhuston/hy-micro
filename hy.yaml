@@ -1,0 +1,93 @@
+filetype: hy
+
+detect:
+    filename: "\\.hy$"
+
+rules:
+
+    # Constants
+    - constant.bool: "\\b(true|false)\\b"
+    - constant.macro: "\\b(nil)\\b"
+      # Valid numbers
+    - constant.number: "[\\-]?[0-9]+?\\b"
+    - constant.number: "0x[0-9][A-Fa-f]+?\\b"
+    - constant.number: "[\\-]?(3[0-6]|2[0-9]|1[0-9]|[2-9])r[0-9A-Z]+?\\b"
+      # Invalid numbers
+    - error: "[\\-]?([4-9][0-9]|3[7-9]|1|0)r[0-9A-Z]+?\\b"
+
+      # Symbols
+    - symbol.operator: "[=>+\\-*/'?]"
+
+      # Types/casting
+    - type: "\\b(byte|short|(big)?int(eger)?|long|float|num|bigdec|rationalize)\\b"
+
+      # String highlighting
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "(\\\\u[0-9A-fa-f]{4,4}|\\\\newline|\\\\space|\\\\tab|\\\\formfeed|\\\\backspace|\\\\return|\\\\.)"
+
+      # Comments
+    - comment:
+        start: ";"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+
+    # built-in objects
+    - constant: "\\b(Ellipsis|None|self|cls|True|False)\\b"
+      # built-in attributes
+    - constant: "\\b(__bases__|__builtin__|__class__|__debug__|__dict__|__doc__|__file__|__members__|__methods__|__name__|__self__)\\b"
+      # built-in functions
+    - identifier: "\\b(abs|all|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|eval|exec|format|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|len|locals|max|min|next|nonlocal|oct|open|ord|pow|print|repr|round|setattr|sorted|sum|vars|__import__)\\b"
+      # special method names
+    - identifier: "\\b__(abs|add|and|butlast|call|cmp|coerce|complex|concat|contains|delattr|delitem|delslice|del|dict|divmod|div|first|float|getattr|getitem|getslice|hash|hex|iadd|iand|iconcat|ifloordiv|ilshift|imatmul|imod|imul|init|int|invert|inv|ior|ipow|irshift|isub|iter|itruediv|ixor|last|len|long|lshift|mod|mul|neg|next|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdivmod|rdiv|repeat|repr|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rxor|setattr|setitem|setslice|str|sub|xor)__\\b"
+      # types
+    - type: "\\b(bool|bytearray|bytes|classmethod|complex|dict|enumerate|filter|float|frozenset|int|list|map|memoryview|object|property|range|reversed|set|slice|staticmethod|str|super|tuple|type|zip)\\b"
+      # definitions
+    - identifier: "def [a-zA-Z_0-9]+"
+      # keywords
+    - statement: "\\b(and|as|assert|async|await|break|class|continue|cond|def|defn|deftag|del|do|elif|else|except|finally|fn|for|from|global|if|import|in|is|lambda|let|loop|nonlocal|not|or|pass|raise|recur|require|return|setv|try|while|with|yield)\\b"
+      # decorators
+    - brightgreen: "@.*[(]"
+      # operators
+    - symbol.operator: "([~^.:;,+*|=!\\%@]|<|>|/|-|&)"
+      # parentheses
+    - symbol.brackets: "([(){}]|\\[|\\])"
+      # numbers
+    - constant.number: "\\b[0-9](_?[0-9])*(\\.([0-9](_?[0-9])*)?)?(e[0-9](_?[0-9])*)?\\b" # decimal
+    - constant.number: "\\b0b(_?[01])+\\b"     # bin
+    - constant.number: "\\b0o(_?[0-7])+\\b"    # oct
+    - constant.number: "\\b0x(_?[0-9a-f])+\\b" # hex
+
+    - constant.string:
+        start: "\"\"\""
+        end: "\"\"\""
+        rules: []
+
+    - comment:
+        start: "'''"
+        end: "'''"
+        rules: []
+
+    - constant.string:
+        start: "\""
+        end: "(\"|$)"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "'"
+        end: "('|$)"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\."
+
+    - comment:
+        start: "#"
+        end: "$"
+        rules:  # AKA Code tags (PEP 350)
+            - todo: "(TODO|FIXME|HACK|BUG|NOTE|FAQ|MNEMONIC|REQ|RFE|IDEA|PORT|\\?\\?\\?|!!!|GLOSS|SEE|TODOC|STAT|RVD|CRED):?"
