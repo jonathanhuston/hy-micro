@@ -49,7 +49,7 @@ rules:
       # definitions
     - identifier: "def [a-zA-Z_0-9]+"
       # keywords
-    - statement: "\\b(and|as|assert|async|await|break|class|continue|cond|def|defn|deftag|del|do|elif|else|except|finally|fn|for|from|global|if|import|in|is|lambda|let|loop|nonlocal|not|or|pass|raise|recur|require|return|setv|try|while|with|yield)\\b"
+    - statement: "\\b(and|as|assert|async|await|break|cfor|class|continue|cond|def|defn|defmacro|deftag|del|dfor|do|elif|else|except|finally|fn|for|from|gfor|global|if|if-not|import|in|is|lambda|let|lfor|loop|nonlocal|not|or|pass|raise|recur|require|return|setv|try|while|with|yield)\\b"
       # decorators
     - brightgreen: "@.*[(]"
       # operators
