@@ -10,7 +10,7 @@ Tools to facilitate Hy workflow
 
 `hy.yaml` provides Hy syntax highlighting for Micro editor:
 
- https://micro-editor.github.io
+ [https://micro-editor.github.io](https://micro-editor.github.io)
 
 Installation: Put `hy.yaml` file in `~/.config/micro/syntax`
 

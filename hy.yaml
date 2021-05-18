@@ -16,7 +16,7 @@ rules:
     - error: "[\\-]?([4-9][0-9]|3[7-9]|1|0)r[0-9A-Z]+?\\b"
 
       # Symbols
-    - symbol.operator: "[=>+*/'?]|- "
+    - symbol.operator: "->|->>|- "
 
       # Types/casting
     - type: "\\b(byte|short|(big)?int(eger)?|long|float|num|bigdec|rationalize)\\b"
@@ -55,11 +55,11 @@ rules:
       # built-in functions
     - identifier: "\\b(abs|all|any|ascii|bin|bool|breakpoint|butlast|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dir|divmod|eval|exec|first|format|get|getattr|globals|hasattr|hash|help|hex|id|input|isinstance|issubclass|iter|last|len|locals|max|min|next|nonlocal|oct|open|ord|pow|print|repr|round|setattr|sorted|sum|vars|__import__)\\b"
       # special method names
-    - identifier: "\\b__(abs|add|and|butlast|call|cmp|coerce|complex|concat|contains|delattr|delitem|delslice|del|dict|divmod|div|first|float|get|getattr|getitem|getslice|hash|hex|iadd|iand|iconcat|ifloordiv|ilshift|imatmul|imod|imul|init|int|invert|inv|ior|ipow|irshift|isub|iter|itruediv|ixor|last|len|long|lshift|mod|mul|neg|next|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdivmod|rdiv|repeat|repr|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rxor|setattr|setitem|setslice|str|sub|xor)__\\b"
+    - identifier: "\\b__(abs|add|and|call|cmp|coerce|complex|concat|contains|delattr|delitem|delslice|del|dict|divmod|div|first|float|getattr|getitem|getslice|hash|hex|iadd|iand|iconcat|ifloordiv|ilshift|imatmul|imod|imul|init|int|invert|inv|ior|ipow|irshift|isub|iter|itruediv|ixor|len|long|lshift|mod|mul|neg|next|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdivmod|rdiv|repeat|repr|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rxor|setattr|setitem|setslice|str|sub|xor)__\\b"
       # types
     - type: "\\b(bool|bytearray|bytes|classmethod|complex|dict|enumerate|filter|float|frozenset|int|list|map|memoryview|object|property|range|reversed|set|slice|staticmethod|str|super|tuple|type|zip)\\b"
       # keywords
-    - statement: "\\b(and|as|assert|async|await|break|cfor|class|continue|cond|def|defn|defmacro|deftag|del|dfor|do|elif|else|except|finally|fn|for|from|gfor|global|if|if-not|import|in|is|lambda|let|lfor|loop|nonlocal|not|or|pass|raise|recur|require|return|setv|try|when|while|with|yield)\\b"
+    - statement: "\\b(and|as|assert|async|await|break|cfor|class|continue|cond|def|defn|defmacro|deftag|del|dfor|do|elif|else|except|finally|fn|for|from|gfor|global|if|import|in|is|lambda|let|lfor|loop|nonlocal|not|or|pass|raise|recur|require|return|setv|try|when|while|with|yield)\\b"
       # decorators
     - brightgreen: "@.*[(]"
       # operators
@@ -81,3 +81,5 @@ rules:
         start: "'''"
         end: "'''"
         rules: []
+
+    - statement: "\\b(if-not)\\b"
