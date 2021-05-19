@@ -20,9 +20,9 @@ or
 
  [https://micro-editor.github.io](https://micro-editor.github.io)
 
-####Installation: 
+#### Installation: 
 
-`hy.yaml` file in `~/.config/micro/syntax`
+`hy.yaml`  in `~/.config/micro/syntax`
 
 `cuddles.hy` in `~/.config/micro/colorschemes`
 
