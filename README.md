@@ -6,11 +6,25 @@ Tools to facilitate Hy workflow
 
 `clojure.hy` provides several Clojure-like language structures for Hy
 
+#### Usage:
+
+`(require clojure)`
+
+or
+
+`(require [clojure [commands]])`
+
 ## Syntax highlighting for Micro editor
 
-`hy.yaml` provides Hy syntax highlighting for Micro editor:
+`hy.yaml` and `cuddles.hy` provide Hy syntax highlighting and color scheme for Micro editor:
 
  [https://micro-editor.github.io](https://micro-editor.github.io)
 
-Installation: Put `hy.yaml` file in `~/.config/micro/syntax`
+####Installation: 
+
+`hy.yaml` file in `~/.config/micro/syntax`
+
+`cuddles.hy` in `~/.config/micro/colorschemes`
+
+
 
