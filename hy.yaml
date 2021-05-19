@@ -16,9 +16,6 @@ rules:
       # Invalid numbers
     - error: "[\\-]?([4-9][0-9]|3[7-9]|1|0)r[0-9A-Z]+?\\b"
 
-      # Symbols
-    - symbol.operator: "->|->>"
-
       # Types/casting
     - type: "\\b(byte|short|(big)?int(eger)?|long|float|num|bigdec|rationalize)\\b"
 
@@ -61,7 +58,7 @@ rules:
       # types
     - type: "\\b(bool|bytearray|bytes|classmethod|complex|dict|enumerate|filter|float|frozenset|int|list|map|memoryview|object|property|range|reversed|set|slice|staticmethod|str|super|tuple|type|zip)\\b"
       # keywords
-    - statement: "\\b(and|as|assert|async|await|break|case|cfor|class|continue|cond|def|defn|defmacro|deftag|del|dfor|do|except|finally|fn|for|from|gfor|global|if|import|in|let|lfor|loop|nonlocal|not|or|pass|raise|recur|require|return|setv|try|when|while|with|yield)\\b"
+    - statement: "\\b(and|as|assert|async|await|break|case|cfor|class|comment|continue|cond|def|defn|defmacro|deftag|del|dfor|do|except|finally|fn|for|from|gfor|global|if|import|in|let|lfor|loop|nonlocal|not|or|pass|raise|recur|require|return|setv|try|when|while|with|yield)\\b"
       # decorators
     - brightgreen: "@.*[(]"
       # operators
@@ -72,3 +69,4 @@ rules:
     - statement: "\\b(if-not)\\b"
     - identifier: "\\= |!\\= |\\+ |- |\\* |/ |// |% |<|>"
     - symbol.operator: "#\\*"
+    - symbol.operator: "->|->>|#_"
