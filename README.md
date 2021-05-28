@@ -1,18 +1,4 @@
-# Hy Tools
-
-Tools to facilitate Hy workflow
-
-## Macros
-
-`clojure.hy` provides several Clojure-like language structures for Hy
-
-#### Usage:
-
-`(require clojure)`
-
-or
-
-`(require [clojure [commands]])`
+# Hy Micro
 
 ## Syntax highlighting for Micro editor
 
