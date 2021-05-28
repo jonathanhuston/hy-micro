@@ -5,25 +5,19 @@ detect:
 
 rules:
 
-      # Valid numbers
-    - constant.number: "\\b[0-9](_?[0-9])*(\\.([0-9](_?[0-9])*)?)?(e[0-9](_?[0-9])*)?\\b" # decimal
-    - constant.number: "\\b0b(_?[01])+\\b"     # bin
-    - constant.number: "\\b0o(_?[0-7])+\\b"    # oct
-    - constant.number: "\\b0x(_?[0-9a-fA-F])+\\b" # hex
-
-      # String highlighting
-    - constant.string:
-        start: "\""
-        end: "\""
-        skip: "\\\\."
-        rules:
-            - constant.specialChar: "(\\\\u[0-9A-fa-f]{4,4}|\\\\newline|\\\\space|\\\\tab|\\\\formfeed|\\\\backspace|\\\\return|\\\\.)"
-
+    # Slice operator
     - symbol.operator: "\\:"
 
-    # definitions
-    - identifier.var: "def [a-zA-Z\\-_0-9~]+"
+    # Numbers
+    - constant.number: "\\b[0-9](_?[0-9])*(\\.([0-9](_?[0-9])*)?)?(e[0-9](_?[0-9])*)?\\b" # decimal
+    - constant.number: "\\b0b(_?[01])+\\b"        # binary
+    - constant.number: "\\b0o(_?[0-7])+\\b"       # octal
+    - constant.number: "\\b0x(_?[0-9a-fA-F])+\\b" # hexadecimal
+
+    # Symbol definitions
     - identifier.var: "setv [a-zA-Z\\-_0-9~]+"
+
+    - identifier.var: "def [a-zA-Z\\-_0-9~]+"
     - identifier.var: "setx [a-zA-Z\\-_0-9~]+"
     - identifier.var: "global [a-zA-Z\\-_0-9~]+"
     - identifier.var: "nonlocal [a-zA-Z\\-_0-9~]+"
@@ -40,24 +34,33 @@ rules:
     - identifier.var: ":[a-zA-Z\\-_]+"
     - identifier.var: "with-decorator [a-zA-Z\\-_0-9]+"
 
-    # built-in objects
+    # Strings
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "(\\\\u[0-9A-fa-f]{4,4}|\\\\newline|\\\\space|\\\\tab|\\\\formfeed|\\\\backspace|\\\\return|\\\\.)"
+
+    # Constants
     - constant: "\\b(Ellipsis|None|True|False)\\b"
-      # built-in attributes
+    # Attributes
     - constant: "\\b(__bases__|__builtin__|__class__|__debug__|__dict__|__doc__|__file__|__members__|__methods__|__name__|__self__)\\b"
-      # built-in functions
-    - identifier: "\\b(abs|accumulate|all|and|any|ascii|assoc|append|bin|bool|breakpoint|butlast|bytearray|bytes|callable|chain|chr|classmethod|combinations|comp|compile|complement|complex|compress|constantly|count|cut|cycle|dec|delattr|dir|disassemble|distinct|divmod|drop|eval|exec|filter|first|flatten|format|fraction|get|getattr|globals|hasattr|hash|hex|hy.eval|id|identity|in|inc|input|interleave|interpose|is|isinstance|islice|issubclass|iter|iterate|juxt|keyword|last|len|locals|mangle|map|max|min|multicombinations|next|nonlocal|not|nth|ncut|oct|of|open|or|ord|partition|permutations|pow|print|product|py|pys|range|read|reduce|remove|repeat|repeatedly|repr|rest|round|second|setattr|some|sorted|tee|sum|take|type|unmangle|vars|xor|zip|__import__)\\b "
-      # special method names
+    # Functions
+    - identifier: ".?\\b(abs|accumulate|all|and|any|ascii|assoc|append|bin|bool|breakpoint|butlast|bytearray|bytes|callable|chain|chr|classmethod|combinations|comp|compile|complement|complex|compress|constantly|count|cut|cycle|dec|delattr|dir|disassemble|distinct|divmod|drop|eval|exec|filter|first|flatten|format|fraction|get|getattr|globals|hasattr|hash|hex|hy.eval|id|identity|in|inc|input|interleave|interpose|is|isinstance|islice|issubclass|iter|iterate|juxt|keyword|last|len|locals|mangle|map|max|min|multicombinations|next|nonlocal|not|nth|ncut|oct|of|open|or|ord|partition|permutations|pow|print|product|py|pys|range|read|reduce|remove|repeat|repeatedly|repr|rest|round|second|setattr|some|sorted|tee|sum|take|type|unmangle|vars|xor|zip|__import__)\\b "
+    # Special methods
     - identifier: "\\b__(abs|add|and|call|cmp|coerce|complex|concat|contains|delattr|delitem|delslice|del|dict|divmod|div|first|float|getattr|getitem|getslice|hash|hex|iadd|iand|iconcat|ifloordiv|ilshift|imatmul|imod|imul|init|int|invert|inv|ior|ipow|irshift|isub|iter|itruediv|ixor|len|long|lshift|mod|mul|neg|next|nonzero|oct|or|pos|pow|radd|rand|rcmp|rdivmod|rdiv|repeat|repr|rlshift|rmod|rmul|ror|rpow|rrshift|rshift|rsub|rxor|setattr|setitem|setslice|str|sub|xor)__\\b"
-      # types
+    # Types
     - type: "\\b(bool|bytearray|bytes|classmethod|complex|dict|enumerate|float|frozenset|int|list|memoryview|object|property|reversed|set|slice|staticmethod|str|super|tuple)\\b"
-      # keywords
+    # Special forms
     - statement: "\\b(as|assert|async|await|break|case|cfor|class|cmp|continue|cond|def|defclass|defn|defmacro|defmain|defseq|deftag|del|dfor|do|doc|doto|else|except|finally|fn|for|gensym|gfor|global|help|if|import|let|lif|lfor|loop|macroexpand|nonlocal|pass|pformat|postwalk|pp|pprint|prewalk|quasiquote|quote|raise|recur|require|return|rit|saferepr|seq|setv|setx|sfor|smacrolet|try|unless|unquote|walk|when|while|with|yield)\\b "
-      # decorators
+    # Decorators
     - brightgreen: "\\bwith-decorator\\b "
 
-      # operators
-    - symbol.operator: "([#^.,|!]|&)"
+    # Operators
+    - symbol.operator: "([#^,|!]|&)"
 
+    # Functions with special characters
     - identifier: "\\^ "
     - identifier: "\\bcall\\?"
     - identifier: "\\bcoll\\?"
@@ -75,6 +78,7 @@ rules:
     - identifier: "\\biterator\\?"
     - identifier: "\\bkeyword\\?"
     - identifier: "\\blist\\?"
+    - identifier: "\\b\\*map"
     - identifier: "\\bmerge-with\\b "
     - identifier: "\\bneg\\?"
     - identifier: "\\bnone\\?"
@@ -97,11 +101,13 @@ rules:
     - identifier: "\\bzero\\?"
     - identifier: "\\bzip-longest\\b "
 
-      # parentheses
+    # Brackets
     - symbol.brackets: "([(){}]|\\[|\\])"
 
-    - identifier: "\\= |!\\= |\\+ |- |\\* |\\*\\* |/ |// |% |@ |< |> |<\\= |\\=> |<< |>> |\\| |\\~ |\\*map"
+    # Comparison, logical, arithmetic operators
+    - identifier: "\\= |!\\= |\\+ |- |\\* |\\*\\* |/ |// |% |@ |< |> |<\\= |\\=> |<< |>> |\\| |\\~ "
 
+    # Special forms with special characters
     - statement: "\\b(ap-dotimes|ap-each|ap-each-while|ap-filter|ap-first|ap-if|ap-last|ap-map|ap-map-when|ap-reduce|ap-reject|recur-sym-replace|calling-module|calling-module-name|defn\\/a|do-n|end-sequence|eval-and-compile|eval-when-compile|fn\\/a|hy-repr|hy-repr-register|if-not|it|lambda-list|lif-not|list-n|macroexpand-all|macroexpand-1|unpack-iterable|unpack-mapping|unquote-splice|with\\/a|with-gensyms|yield-from)\\b"
     
     - statement: ":&"
@@ -138,6 +144,7 @@ rules:
     - statement: "\\blet\\+"
     - statement: "\\bsetv\\+"
 
+    # Special form macros
     - symbol.operator: "#\\*+"
     - symbol.operator: "->"
     - symbol.operator: "->>"
@@ -148,10 +155,10 @@ rules:
     - symbol.operator: "#\\:"
     - symbol.operator: "\\:\\:"
 
+    # Decorators
     - brightgreen: "##\\@"
 
-
-      # Comments
+    # Comments
     - comment:
         start: ";"
         end: "$"
